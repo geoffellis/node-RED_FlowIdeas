@@ -1367,10 +1367,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 90,
-        "y": 160,
+        "x": 110,
+        "y": 220,
         "wires": [
-            []
+            [
+                "6cae58f9c62f9a57"
+            ]
         ]
     },
     {
@@ -1386,10 +1388,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 90,
-        "y": 100,
+        "x": 110,
+        "y": 140,
         "wires": [
-            []
+            [
+                "6fce01b1e3d93c7d"
+            ]
         ]
     },
     {
@@ -1403,8 +1407,8 @@
         "cells": "coffee!A1:E10000",
         "flatten": true,
         "name": "Google Sheet",
-        "x": 1760,
-        "y": 740,
+        "x": 1480,
+        "y": 840,
         "wires": [
             []
         ]
@@ -1413,12 +1417,12 @@
         "id": "ca95fa67badc3b05",
         "type": "ui_chart",
         "z": "65853bc12ed0cd16",
-        "name": "",
+        "name": "Temperature Chart",
         "group": "20b888e14f6927fd",
         "order": 1,
         "width": "12",
         "height": "9",
-        "label": "",
+        "label": "Temperature",
         "chartType": "line",
         "legend": "true",
         "xformat": "HH:mm:ss",
@@ -1447,8 +1451,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1350,
-        "y": 280,
+        "x": 1210,
+        "y": 440,
         "wires": [
             []
         ]
@@ -1476,8 +1480,8 @@
         "seg1": "300",
         "seg2": "500",
         "className": "",
-        "x": 790,
-        "y": 60,
+        "x": 910,
+        "y": 140,
         "wires": []
     },
     {
@@ -1503,8 +1507,8 @@
         "seg1": "300",
         "seg2": "500",
         "className": "",
-        "x": 790,
-        "y": 120,
+        "x": 930,
+        "y": 220,
         "wires": []
     },
     {
@@ -1530,8 +1534,8 @@
         "seg1": "300",
         "seg2": "500",
         "className": "",
-        "x": 790,
-        "y": 180,
+        "x": 930,
+        "y": 300,
         "wires": []
     },
     {
@@ -1557,8 +1561,8 @@
         "seg1": "300",
         "seg2": "500",
         "className": "",
-        "x": 770,
-        "y": 240,
+        "x": 910,
+        "y": 380,
         "wires": []
     },
     {
@@ -1574,10 +1578,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 90,
-        "y": 220,
+        "x": 110,
+        "y": 300,
         "wires": [
-            []
+            [
+                "e51537a527b24c4e"
+            ]
         ]
     },
     {
@@ -1593,10 +1599,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 90,
-        "y": 280,
+        "x": 110,
+        "y": 380,
         "wires": [
-            []
+            [
+                "a4e96f8af8c02a80"
+            ]
         ]
     },
     {
@@ -1620,8 +1628,8 @@
         "topic": "resetChart",
         "payload": "[]",
         "payloadType": "jsonata",
-        "x": 920,
-        "y": 20,
+        "x": 940,
+        "y": 60,
         "wires": [
             [
                 "ca95fa67badc3b05",
@@ -1646,8 +1654,8 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1400,
-        "y": 740,
+        "x": 1120,
+        "y": 840,
         "wires": [
             [
                 "03043595cd8d409a"
@@ -1664,8 +1672,8 @@
         "createDir": false,
         "overwriteFile": "false",
         "encoding": "none",
-        "x": 1800,
-        "y": 620,
+        "x": 1520,
+        "y": 720,
         "wires": [
             []
         ]
@@ -1681,8 +1689,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1440,
-        "y": 620,
+        "x": 1160,
+        "y": 720,
         "wires": [
             [
                 "707d8f02b1c2f43c"
@@ -1702,7 +1710,7 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1490,
+        "x": 250,
         "y": 60,
         "wires": []
     },
@@ -1732,8 +1740,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1380,
-        "y": 680,
+        "x": 1100,
+        "y": 780,
         "wires": [
             [
                 "03043595cd8d409a"
@@ -1766,8 +1774,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1410,
-        "y": 560,
+        "x": 1130,
+        "y": 660,
         "wires": [
             [
                 "707d8f02b1c2f43c"
@@ -1781,7 +1789,7 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 1330,
+        "x": 90,
         "y": 60,
         "wires": [
             [
@@ -1800,8 +1808,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.pass = false;",
         "finalize": "",
         "libs": [],
-        "x": 1620,
-        "y": 620,
+        "x": 1340,
+        "y": 720,
         "wires": [
             [
                 "b719fc2b5f983d0e"
@@ -1819,8 +1827,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.pass = false;",
         "finalize": "",
         "libs": [],
-        "x": 1580,
-        "y": 740,
+        "x": 1300,
+        "y": 840,
         "wires": [
             [
                 "a116f4c78bd62774"
@@ -1847,8 +1855,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 990,
-        "y": 620,
+        "x": 830,
+        "y": 720,
         "wires": [
             [
                 "d57818201b63b45a"
@@ -1876,8 +1884,8 @@
         "topic": "resetChart",
         "payload": "\"time\",\"Inlet\",\"Internal_1\",Internal_2\",\"Exit\",\"RoR\"",
         "payloadType": "str",
-        "x": 1640,
-        "y": 560,
+        "x": 1360,
+        "y": 660,
         "wires": [
             [
                 "a9b88e320674cb31"
@@ -1894,8 +1902,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 1800,
-        "y": 560,
+        "x": 1520,
+        "y": 660,
         "wires": [
             []
         ]
@@ -1911,8 +1919,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar KalmanFilter = global.get('kalmanjs');\n//var kalmanFilter = new KalmanFilter({R: 0.01, Q: 5});\nvar kalmanFilter = new KalmanFilter({R: 5, Q: 5});\nvar data = Array(50).fill(-1);\ncontext.set(\"kalmanFilter\",kalmanFilter);\ncontext.set(\"data\",data);",
         "finalize": "",
         "libs": [],
-        "x": 230,
-        "y": 580,
+        "x": 490,
+        "y": 720,
         "wires": [
             []
         ]
@@ -1921,7 +1929,7 @@
         "id": "9617c3d99a77cf26",
         "type": "ui_chart",
         "z": "65853bc12ed0cd16",
-        "name": "",
+        "name": "RoR Chart",
         "group": "20b888e14f6927fd",
         "order": 2,
         "width": "12",
@@ -1955,8 +1963,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1450,
-        "y": 420,
+        "x": 1190,
+        "y": 480,
         "wires": [
             []
         ]
@@ -1972,8 +1980,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('t1', (new Date()).getTime());\ncontext.set('x1', 70);\n",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 280,
+        "x": 550,
+        "y": 380,
         "wires": [
             [
                 "c6ff6dfa8660daa1",
@@ -2001,8 +2009,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 695,
-        "y": 60,
+        "x": 815,
+        "y": 140,
         "wires": [
             [
                 "a85de45a854161bf"
@@ -2029,8 +2037,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 695,
-        "y": 120,
+        "x": 815,
+        "y": 220,
         "wires": [
             [
                 "bc7a16ac0ea97f6d"
@@ -2057,8 +2065,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 695,
-        "y": 180,
+        "x": 815,
+        "y": 300,
         "wires": [
             [
                 "255a7c16c231692f"
@@ -2085,8 +2093,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 695,
-        "y": 240,
+        "x": 815,
+        "y": 380,
         "wires": [
             [
                 "ae85f398fe7776b0"
@@ -2099,14 +2107,14 @@
         "type": "function",
         "z": "65853bc12ed0cd16",
         "name": "Ave of Internal T",
-        "func": "const newMsg = { \n     'payload': ( msg.payload['bbq/temperature/2 lpf'] + msg.payload['bbq/temperature/3 lpf'] ) / 2.0\n    ,'topic': \"Ave of Internal Temperatures\"\n    ,'time': msg.time\n    ,'debug': {\n         \"T2\":msg.payload['bbq/temperature/2 lpf'] \n        ,\"T3\":msg.payload['bbq/temperature/3 lpf'] \n    }\n    \n}\nreturn newMsg;",
+        "func": "const time =new Date().toISOString().\n                    replace(/T/, ' ').      // replace T with a space\n                    replace(/\\..+/, '');     // delete the dot and everything after\n\nconst newMsg = { \n     'payload': ( msg.payload['bbq/temperature/2 lpf'] + msg.payload['bbq/temperature/3 lpf'] ) / 2.0\n    ,'topic': \"Ave of Internal Temperatures\"\n    ,'time': time\n    ,'debug': {\n         \"T2\":msg.payload['bbq/temperature/2 lpf'] \n        ,\"T3\":msg.payload['bbq/temperature/3 lpf'] \n    }\n    \n}\nreturn newMsg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 300,
-        "y": 380,
+        "x": 560,
+        "y": 540,
         "wires": [
             [
                 "ca95fa67badc3b05",
@@ -2126,8 +2134,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1075,
-        "y": 620,
+        "x": 915,
+        "y": 720,
         "wires": [
             [
                 "8db9d2de3ad0f271",
@@ -2159,8 +2167,8 @@
         "seg1": "3",
         "seg2": "12",
         "className": "",
-        "x": 1430,
-        "y": 460,
+        "x": 910,
+        "y": 620,
         "wires": []
     },
     {
@@ -2182,8 +2190,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1295,
-        "y": 440,
+        "x": 815,
+        "y": 620,
         "wires": [
             [
                 "bb9d410e0a14f72e",
@@ -2203,13 +2211,14 @@
         "cells": "coffee_run!B143:E488",
         "flatten": false,
         "name": "Playback",
-        "x": 140,
-        "y": 40,
+        "x": 115,
+        "y": 480,
         "wires": [
             [
                 "98c22689370a46e5"
             ]
-        ]
+        ],
+        "l": false
     },
     {
         "id": "93522e5aadc7813b",
@@ -2233,7 +2242,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 55,
-        "y": 40,
+        "y": 480,
         "wires": [
             [
                 "5ae9d774abd357e9"
@@ -2252,8 +2261,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('t1', (new Date()).getTime());\ncontext.set('x1', 70);\n",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 220,
+        "x": 550,
+        "y": 300,
         "wires": [
             [
                 "02570cc576caa846",
@@ -2274,8 +2283,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('t1', (new Date()).getTime());\ncontext.set('x1', 70);\n",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 160,
+        "x": 550,
+        "y": 220,
         "wires": [
             [
                 "e7aff0244997141d",
@@ -2296,8 +2305,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\ncontext.set('t1', (new Date()).getTime());\ncontext.set('x1', 70);\n",
         "finalize": "",
         "libs": [],
-        "x": 330,
-        "y": 100,
+        "x": 550,
+        "y": 140,
         "wires": [
             [
                 "b10826b09f453819",
@@ -2326,27 +2335,8 @@
         "reduceInit": "",
         "reduceInitType": "",
         "reduceFixup": "",
-        "x": 110,
-        "y": 380,
-        "wires": [
-            [
-                "da487f100092be9e"
-            ]
-        ]
-    },
-    {
-        "id": "da487f100092be9e",
-        "type": "function",
-        "z": "65853bc12ed0cd16",
-        "name": "",
-        "func": "const time =new Date().toISOString().\n                    replace(/T/, ' ').      // replace T with a space\n                    replace(/\\..+/, '');     // delete the dot and everything after\nmsg.time = time;\nmsg.topic = time;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 195,
-        "y": 380,
+        "x": 435,
+        "y": 540,
         "wires": [
             [
                 "d58fb2b16fe45e4b"
@@ -2367,8 +2357,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 450,
-        "y": 520,
+        "x": 670,
+        "y": 820,
         "wires": []
     },
     {
@@ -2382,8 +2372,8 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "",
-        "x": 235,
-        "y": 40,
+        "x": 175,
+        "y": 480,
         "wires": [
             [
                 "8f7a453069a50a46"
@@ -2402,8 +2392,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 355,
-        "y": 40,
+        "x": 295,
+        "y": 480,
         "wires": [
             [
                 "6fce01b1e3d93c7d"
@@ -2438,8 +2428,8 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 295,
-        "y": 40,
+        "x": 235,
+        "y": 480,
         "wires": [
             [
                 "74e07da9f788883a"
@@ -2458,8 +2448,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(11).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
         "finalize": "",
         "libs": [],
-        "x": 240,
-        "y": 480,
+        "x": 540,
+        "y": 620,
         "wires": [
             [
                 "c6ff6dfa8660daa1",
@@ -2467,5 +2457,15 @@
                 "fd502efe0bcf80f9"
             ]
         ]
+    },
+    {
+        "id": "34a6870523baa74a",
+        "type": "comment",
+        "z": "65853bc12ed0cd16",
+        "name": "CHECK MQTT Config NODE",
+        "info": "\nTo run playback disable the MQTT config node so plyback and the MQTT values aren't both actvie",
+        "x": 120,
+        "y": 440,
+        "wires": []
     }
 ]

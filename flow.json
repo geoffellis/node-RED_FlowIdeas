@@ -1,16 +1,24 @@
 [
     {
+        "id": "65853bc12ed0cd16",
+        "type": "tab",
+        "label": "Coffee Roaster",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f6f2187d.f17ca8",
         "type": "tab",
         "label": "Power",
-        "disabled": false,
+        "disabled": true,
         "info": ""
     },
     {
         "id": "6d703647927a02c8",
         "type": "tab",
         "label": "Down",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -18,15 +26,7 @@
         "id": "600514eb4d8008a2",
         "type": "tab",
         "label": "Up",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "65853bc12ed0cd16",
-        "type": "tab",
-        "label": "Coffee Roaster",
-        "disabled": false,
+        "disabled": true,
         "info": "",
         "env": []
     },
@@ -47,6 +47,14 @@
         "env": []
     },
     {
+        "id": "6a81800dbf50ece8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "23fd49686f88e3be",
         "type": "gauth"
     },
@@ -59,7 +67,7 @@
         "clientid": "",
         "autoConnect": true,
         "usetls": false,
-        "protocolVersion": "4",
+        "protocolVersion": "3",
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
@@ -324,1089 +332,12 @@
         "className": ""
     },
     {
-        "id": "3cc11d24.ff01a2",
-        "type": "comment",
-        "z": "f6f2187d.f17ca8",
-        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
-        "info": "\n[https://docs.google.com/spreadsheets/d/1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc/edit#gid=0](Google Sheet)\n\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.\n\nhttps://www.rodened.com/posts/how-to-read-and-write-data-to-a-google-sheet-in-node-red-1/#:~:text=Go%20to%20the%20node-red%20editor%20and%20open%20the,the%20Scopes%20further%20down%20in%20the%20configuration%20window.",
-        "x": 350,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "1bf3b114c06ea51a",
-        "type": "kasa",
-        "z": "f6f2187d.f17ca8",
-        "name": "Phone Plug - KP115(US)",
-        "device": "192.168.0.136",
-        "interval": "10000",
-        "eventInterval": "5000",
-        "payload": "getQuickInfo",
-        "payloadType": "info",
-        "debug": false,
-        "x": 390,
-        "y": 220,
-        "wires": [
-            [
-                "f6fd254feb89945a",
-                "7b0c1a5813684be5",
-                "fcaf0e1d9d611420",
-                "d58a1a25e1da952c"
-            ]
-        ]
-    },
-    {
-        "id": "7c88d3051ecbbddf",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "getQuickInfo",
-        "payloadType": "str",
-        "x": 120,
-        "y": 220,
-        "wires": [
-            [
-                "1bf3b114c06ea51a",
-                "dca35781dc909c8f"
-            ]
-        ]
-    },
-    {
-        "id": "079fd9adc5b34032",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "toggle",
-        "payloadType": "str",
-        "x": 150,
-        "y": 180,
-        "wires": [
-            [
-                "1bf3b114c06ea51a"
-            ]
-        ]
-    },
-    {
-        "id": "19014adf054dbad2",
-        "type": "GSheet",
-        "z": "f6f2187d.f17ca8",
-        "creds": "23fd49686f88e3be",
-        "method": "append",
-        "action": "",
-        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
-        "cells": "Sheet1!A1:M10000",
-        "flatten": true,
-        "name": "Google Sheet",
-        "x": 900,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0853034c5a052deb",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "To Array",
-        "func": "msg.payload = [msg.payload.timestamp,msg.payload.emeter.realtime.current_ma,msg.payload.emeter.realtime.power,msg.payload.emeter.realtime.total_wh]\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 740,
-        "y": 220,
-        "wires": [
-            [
-                "19014adf054dbad2",
-                "fcaf0e1d9d611420"
-            ]
-        ]
-    },
-    {
-        "id": "f6fd254feb89945a",
-        "type": "rbe",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "func": "rbe",
-        "gap": "",
-        "start": "",
-        "inout": "out",
-        "septopics": true,
-        "property": "payload.emeter.realtime.current_ma",
-        "topi": "topic",
-        "x": 610,
-        "y": 220,
-        "wires": [
-            [
-                "0853034c5a052deb"
-            ]
-        ]
-    },
-    {
-        "id": "7b0c1a5813684be5",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "Turn Off",
-        "property": "payload.emeter.realtime.current_ma",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            },
-            {
-                "t": "lte",
-                "v": "50",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 120,
-        "y": 420,
-        "wires": [
-            [],
-            [
-                "05649791ccdafe11"
-            ]
-        ]
-    },
-    {
-        "id": "05649791ccdafe11",
-        "type": "trigger",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "op1": "off",
-        "op2": "on",
-        "op1type": "str",
-        "op2type": "str",
-        "duration": "18",
-        "extend": false,
-        "overrideDelay": false,
-        "units": "hr",
-        "reset": "toggle",
-        "bytopic": "all",
-        "topic": "topic",
-        "outputs": 1,
-        "x": 350,
-        "y": 420,
-        "wires": [
-            [
-                "70680154ce6f7121",
-                "1bf3b114c06ea51a",
-                "f17b7f74b36a8c03"
-            ]
-        ]
-    },
-    {
-        "id": "fcaf0e1d9d611420",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 610,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "5f0f7ff475b0df30",
-        "type": "comment",
-        "z": "f6f2187d.f17ca8",
-        "name": "Link to sheet",
-        "info": "[https://docs.google.com/spreadsheets/d/1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc/edit#gid=0](link)",
-        "x": 380,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "70680154ce6f7121",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Erase Stats",
-        "func": "if (msg.payload==\"off\")\n    msg.payload=\"eraseStats\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 90,
-        "y": 300,
-        "wires": [
-            [
-                "1bf3b114c06ea51a",
-                "f17b7f74b36a8c03"
-            ]
-        ]
-    },
-    {
-        "id": "d58a1a25e1da952c",
-        "type": "function",
-        "z": "f6f2187d.f17ca8",
-        "name": "Reset",
-        "func": "if (typeof msg.payload.sysInfo !== 'undefined')\n    if (msg.payload.sysInfo.relay_state==1){\n        msg.reset=true;\n        return msg;\n    }\n\nreturn null;\n    ",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 110,
-        "y": 460,
-        "wires": [
-            [
-                "05649791ccdafe11"
-            ]
-        ]
-    },
-    {
-        "id": "f17b7f74b36a8c03",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "tigger_debug",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "75b9e35836b690af",
-        "type": "inject",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "reset",
-                "v": "true",
-                "vt": "bool"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
-        "y": 520,
-        "wires": [
-            [
-                "05649791ccdafe11"
-            ]
-        ]
-    },
-    {
-        "id": "fc7ff10193ea7180",
-        "type": "switch",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "property": "payload.failed",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "10",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 440,
-        "y": 640,
-        "wires": [
-            [
-                "67699a665602bb7a",
-                "f17b7f74b36a8c03",
-                "4b72b92fdd52bbad"
-            ]
-        ]
-    },
-    {
-        "id": "67699a665602bb7a",
-        "type": "change",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "on",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 535,
-        "y": 640,
-        "wires": [
-            [
-                "1bf3b114c06ea51a",
-                "f17b7f74b36a8c03"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "dca35781dc909c8f",
-        "type": "tcp-ping",
-        "z": "f6f2187d.f17ca8",
-        "ip": "192.168.0.127",
-        "port": "22000",
-        "count": "10",
-        "interval": "30000",
-        "timeout": "10000",
-        "topic": "",
-        "name": "",
-        "x": 260,
-        "y": 640,
-        "wires": [
-            [
-                "fc7ff10193ea7180",
-                "fa5a07c55dcac919"
-            ]
-        ]
-    },
-    {
-        "id": "4b72b92fdd52bbad",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 720,
-        "wires": []
-    },
-    {
-        "id": "fa5a07c55dcac919",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "TCP",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 440,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "7931dd0275f44101",
-        "type": "debug",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 215,
-        "y": 875,
-        "wires": []
-    },
-    {
-        "id": "a00d932d95b2148d",
-        "type": "catch",
-        "z": "f6f2187d.f17ca8",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 65,
-        "y": 875,
-        "wires": [
-            [
-                "7931dd0275f44101"
-            ]
-        ]
-    },
-    {
-        "id": "cdef05f.e8692f8",
-        "type": "inject",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 55,
-        "y": 120,
-        "wires": [
-            [
-                "c813a3f367347541"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "8a2e84550a2fbdb1",
-        "type": "tcp request",
-        "z": "6d703647927a02c8",
-        "server": "192.168.0.163",
-        "port": "3333",
-        "out": "time",
-        "ret": "string",
-        "splitc": "1000",
-        "name": "",
-        "x": 410,
-        "y": 120,
-        "wires": [
-            [
-                "fe6d3c835383785b"
-            ]
-        ]
-    },
-    {
-        "id": "c813a3f367347541",
-        "type": "function",
-        "z": "6d703647927a02c8",
-        "name": "miner_getstat2",
-        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_getstat2\\\"}\\n'\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 180,
-        "y": 120,
-        "wires": [
-            [
-                "8a2e84550a2fbdb1"
-            ]
-        ]
-    },
-    {
-        "id": "fe6d3c835383785b",
-        "type": "json",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 590,
-        "y": 120,
-        "wires": [
-            [
-                "a77a1b3dd298989c"
-            ]
-        ]
-    },
-    {
-        "id": "a77a1b3dd298989c",
-        "type": "function",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "func": "last_stale = flow.get(\"stale\");\nlast_valid = flow.get(\"valid\");\nstale = parseInt(msg.payload.result[8].split(\";\")[0]);\nvalid = parseInt(msg.payload.result[2].split(\";\")[1]);\n\nif ( last_valid == -1 || valid < last_valid ) { \n// Inital start up or after miner reset\n    msg.stale_inc = 0;\n    flow.set(\"stale\", 0);\n} else if ( valid > last_valid ) {  \n// The happy path saw a new valid\n    msg.stale_inc=0;\n    flow.set(\"stale\", stale);\n} else if ( valid == last_valid && stale >= last_stale ) { \n// unhappy stale increased capture the runup by not updating stale to become next last stale\n    msg.stale_inc=stale-last_stale;    \n} \n\nflow.set(\"valid\", valid);\n\nmsg.payload.debug=[valid,last_valid,stale,last_stale,msg.stale_inc];\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"stale\", -1);\nflow.set(\"valid\", -1);",
-        "finalize": "",
-        "libs": [],
-        "x": 675,
-        "y": 120,
-        "wires": [
-            [
-                "6061d8542ecad0f5",
-                "48c953bcfd564376",
-                "cba849c996053a0b"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "1848ad9a572c9294",
-        "type": "inject",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 55,
-        "y": 200,
-        "wires": [
-            [
-                "46453069620ba4c7"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "46453069620ba4c7",
-        "type": "function",
-        "z": "6d703647927a02c8",
-        "name": "miner_restart",
-        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_restart\\\"}\\n'\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 170,
-        "y": 200,
-        "wires": [
-            [
-                "dfabfef0173aae28",
-                "8deb749a308faeb7"
-            ]
-        ]
-    },
-    {
-        "id": "6061d8542ecad0f5",
-        "type": "switch",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "property": "stale_inc",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "3",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 770,
-        "y": 120,
-        "wires": [
-            [
-                "46453069620ba4c7",
-                "48c953bcfd564376"
-            ]
-        ]
-    },
-    {
-        "id": "48c953bcfd564376",
-        "type": "debug",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 750,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "dfabfef0173aae28",
-        "type": "tcp out",
-        "z": "6d703647927a02c8",
-        "host": "192.168.0.163",
-        "port": "3333",
-        "beserver": "client",
-        "base64": false,
-        "end": true,
-        "name": "",
-        "x": 430,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "8deb749a308faeb7",
-        "type": "debug",
-        "z": "6d703647927a02c8",
-        "name": "restart cmd",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 390,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "f7ac2be7c155f3ba",
-        "type": "comment",
-        "z": "6d703647927a02c8",
-        "name": "https://gist.github.com/mraaroncruz/f9c850b138fdb6a915b729ffa897d3cf",
-        "info": "",
-        "x": 280,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "dbfce86a18abe893",
-        "type": "GSheet",
-        "z": "6d703647927a02c8",
-        "creds": "23fd49686f88e3be",
-        "method": "append",
-        "action": "",
-        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
-        "cells": "office!A1:M40000",
-        "flatten": true,
-        "name": "Google Sheet",
-        "x": 800,
-        "y": 280,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "cba849c996053a0b",
-        "type": "change",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.debug",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 675,
-        "y": 280,
-        "wires": [
-            [
-                "dbfce86a18abe893"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "2416138f1644c191",
-        "type": "debug",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 250,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "a5b144fd4da59053",
-        "type": "catch",
-        "z": "6d703647927a02c8",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 90,
-        "y": 340,
-        "wires": [
-            [
-                "2416138f1644c191"
-            ]
-        ]
-    },
-    {
-        "id": "c2129e860d22adc1",
-        "type": "inject",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "60",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 75,
-        "y": 80,
-        "wires": [
-            [
-                "eabb3d2a911b332e"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "43237326cff248d7",
-        "type": "tcp request",
-        "z": "600514eb4d8008a2",
-        "server": "192.168.0.140",
-        "port": "3333",
-        "out": "time",
-        "ret": "string",
-        "splitc": "1000",
-        "name": "",
-        "x": 430,
-        "y": 80,
-        "wires": [
-            [
-                "f23033b87a93a70d"
-            ]
-        ]
-    },
-    {
-        "id": "eabb3d2a911b332e",
-        "type": "function",
-        "z": "600514eb4d8008a2",
-        "name": "miner_getstat2",
-        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_getstat2\\\"}\\n'\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 200,
-        "y": 80,
-        "wires": [
-            [
-                "43237326cff248d7"
-            ]
-        ]
-    },
-    {
-        "id": "f23033b87a93a70d",
-        "type": "json",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 610,
-        "y": 80,
-        "wires": [
-            [
-                "9245398c274fe1ec"
-            ]
-        ]
-    },
-    {
-        "id": "9245398c274fe1ec",
-        "type": "function",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "func": "last_stale = flow.get(\"stale\");\nlast_valid = flow.get(\"valid\");\nstale = parseInt(msg.payload.result[8].split(\";\")[0]);\nvalid = parseInt(msg.payload.result[2].split(\";\")[1]);\n\nif ( last_valid == -1 || valid < last_valid ) { \n// Inital start up or after miner reset\n    msg.stale_inc = 0;\n    flow.set(\"stale\", 0);\n} else if ( valid > last_valid ) {  \n// The happy path saw a new valid\n    msg.stale_inc=0;\n    flow.set(\"stale\", stale);\n} else if ( valid == last_valid && stale >= last_stale ) { \n// unhappy stale increased capture the runup by not updating stale to become next last stale\n    msg.stale_inc=stale-last_stale;    \n} \n\nflow.set(\"valid\", valid);\n\nmsg.payload.debug=[valid,last_valid,stale,last_stale,msg.stale_inc];\n\nreturn msg;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"stale\", -1);\nflow.set(\"valid\", -1);",
-        "finalize": "",
-        "libs": [],
-        "x": 695,
-        "y": 80,
-        "wires": [
-            [
-                "9b9632dbe822d379",
-                "b3bf1e3cdd529e7d",
-                "8468e2771accd53e"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "e1b2fe315efb756b",
-        "type": "inject",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 75,
-        "y": 160,
-        "wires": [
-            [
-                "a5eb13b5795eba32"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "a5eb13b5795eba32",
-        "type": "function",
-        "z": "600514eb4d8008a2",
-        "name": "miner_restart",
-        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_restart\\\"}\\n'\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 190,
-        "y": 160,
-        "wires": [
-            [
-                "600bd693cab5e817",
-                "19ebf3cfe4c2332c"
-            ]
-        ]
-    },
-    {
-        "id": "9b9632dbe822d379",
-        "type": "switch",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "property": "stale_inc",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "gte",
-                "v": "3",
-                "vt": "num"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 790,
-        "y": 80,
-        "wires": [
-            [
-                "a5eb13b5795eba32",
-                "b3bf1e3cdd529e7d"
-            ]
-        ]
-    },
-    {
-        "id": "b3bf1e3cdd529e7d",
-        "type": "debug",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 770,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "600bd693cab5e817",
-        "type": "tcp out",
-        "z": "600514eb4d8008a2",
-        "host": "192.168.0.140",
-        "port": "3333",
-        "beserver": "client",
-        "base64": false,
-        "end": true,
-        "name": "",
-        "x": 450,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "19ebf3cfe4c2332c",
-        "type": "debug",
-        "z": "600514eb4d8008a2",
-        "name": "restart cmd",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 430,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "743b1cc583d91fce",
-        "type": "GSheet",
-        "z": "600514eb4d8008a2",
-        "creds": "23fd49686f88e3be",
-        "method": "append",
-        "action": "",
-        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
-        "cells": "bedroom!A1:M40000",
-        "flatten": true,
-        "name": "Google Sheet",
-        "x": 860,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8468e2771accd53e",
-        "type": "change",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.debug",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 735,
-        "y": 220,
-        "wires": [
-            [
-                "743b1cc583d91fce"
-            ]
-        ],
-        "l": false
-    },
-    {
-        "id": "9b9f6249bc3111e1",
-        "type": "debug",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 298,
-        "y": 298,
-        "wires": []
-    },
-    {
-        "id": "98f3068001d479a6",
-        "type": "catch",
-        "z": "600514eb4d8008a2",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 148,
-        "y": 298,
-        "wires": [
-            [
-                "9b9f6249bc3111e1"
-            ]
-        ]
-    },
-    {
         "id": "533dbfd27831c529",
         "type": "mqtt in",
         "z": "65853bc12ed0cd16",
         "name": "",
         "topic": "bbq/temperature/2",
-        "qos": "2",
+        "qos": "0",
         "datatype": "auto",
         "broker": "d2d2d66e3cef1cdd",
         "nl": false,
@@ -1427,7 +358,7 @@
         "z": "65853bc12ed0cd16",
         "name": "",
         "topic": "bbq/temperature/1",
-        "qos": "2",
+        "qos": "0",
         "datatype": "auto",
         "broker": "d2d2d66e3cef1cdd",
         "nl": false,
@@ -1497,7 +428,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1210,
+        "x": 1430,
         "y": 440,
         "wires": [
             []
@@ -1617,7 +548,7 @@
         "z": "65853bc12ed0cd16",
         "name": "",
         "topic": "bbq/temperature/3",
-        "qos": "2",
+        "qos": "0",
         "datatype": "auto",
         "broker": "d2d2d66e3cef1cdd",
         "nl": false,
@@ -1638,7 +569,7 @@
         "z": "65853bc12ed0cd16",
         "name": "",
         "topic": "bbq/temperature/4",
-        "qos": "2",
+        "qos": "0",
         "datatype": "auto",
         "broker": "d2d2d66e3cef1cdd",
         "nl": false,
@@ -1858,7 +789,8 @@
         "y": 720,
         "wires": [
             [
-                "b719fc2b5f983d0e"
+                "b719fc2b5f983d0e",
+                "422fe8ad66a33048"
             ]
         ]
     },
@@ -1896,7 +828,7 @@
         "joinerType": "str",
         "accumulate": true,
         "timeout": "",
-        "count": "12",
+        "count": "13",
         "reduceRight": false,
         "reduceExp": "",
         "reduceInit": "",
@@ -1930,7 +862,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "resetChart",
-        "payload": "\"time\",\"Inlet\",\"Internal_1\",Internal_2\",\"Exit\",\"RoR\"",
+        "payload": "\"time\",\"Inlet\",\"Internal_1\",Internal_2\",\"Exit\",\"Ave\",\"RoR\",\"R\",\"G\",\"B\",\"H\",\"S\",\"V\",\"output\"",
         "payloadType": "str",
         "x": 1360,
         "y": 660,
@@ -1967,8 +899,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar KalmanFilter = global.get('kalmanjs');\n//var kalmanFilter = new KalmanFilter({R: 0.01, Q: 5});\nvar kalmanFilter = new KalmanFilter({R: 5, Q: 5});\nvar data = Array(50).fill(-1);\ncontext.set(\"kalmanFilter\",kalmanFilter);\ncontext.set(\"data\",data);",
         "finalize": "",
         "libs": [],
-        "x": 490,
-        "y": 720,
+        "x": 370,
+        "y": 740,
         "wires": [
             []
         ]
@@ -2011,7 +943,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1190,
+        "x": 1410,
         "y": 480,
         "wires": [
             []
@@ -2167,7 +1099,9 @@
             [
                 "ca95fa67badc3b05",
                 "c6ff6dfa8660daa1",
-                "6539664ab2acd607"
+                "6539664ab2acd607",
+                "6e6d01e8c9815372",
+                "03d49ced8fde7398"
             ]
         ]
     },
@@ -2357,9 +1291,10 @@
         "y": 140,
         "wires": [
             [
-                "b10826b09f453819",
                 "c6ff6dfa8660daa1",
-                "ca95fa67badc3b05"
+                "ca95fa67badc3b05",
+                "b10826b09f453819",
+                "03d49ced8fde7398"
             ]
         ]
     },
@@ -2486,26 +1421,6 @@
         "l": false
     },
     {
-        "id": "80aae25f2225a5e6",
-        "type": "function",
-        "z": "65853bc12ed0cd16",
-        "name": "RoR Calc 10 (degF/m)",
-        "func": "const produceAndAdd = (arr1 = [], arr2 = []) => {\n   let sum = 0;\n   for(let i=0; i < arr1.length; i++) {\n      const product = (arr1[i] * arr2[i]);\n      sum += product;\n   }\n   return sum;\n};\n\nvar newMsg = {};\n\ntimeNow = (new Date(msg.time)).getTime();\ntimeLast= context.get('timeLast');\ndt = (timeNow - timeLast)/10000000.0;\n\nvar data= context.get('data');\ndata.unshift(parseFloat(msg.payload));\ndata.pop();\ncontext.set('data', data);\n\nif(!isNaN(dt) && dt > 0.0 ){\n    const c = [1,8,27,48,42,0,-42,-48,-27,-8,-1];\n    rorSum = produceAndAdd(data,c);\n    ror = 1/512*1/dt*rorSum*60;\n    newMsg = { \n         'payload':ror          \n        ,'topic': \"RoR2\"\n        ,'time': msg.time\n    }\n\n}\n\nnewMsg.debug = {\n    'timeNow':timeNow\n    ,'timeLast' :timeLast\n    ,'data':data\n    ,'dt':dt\n    ,'ror':ror\n}\n\nreturn newMsg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(11).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
-        "finalize": "",
-        "libs": [],
-        "x": 540,
-        "y": 620,
-        "wires": [
-            [
-                "c6ff6dfa8660daa1",
-                "ca5e768d574ad134"
-            ]
-        ]
-    },
-    {
         "id": "34a6870523baa74a",
         "type": "comment",
         "z": "65853bc12ed0cd16",
@@ -2550,23 +1465,6 @@
         "wires": []
     },
     {
-        "id": "13e625dc73495ef1",
-        "type": "debug",
-        "z": "65853bc12ed0cd16",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1150,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "6539664ab2acd607",
         "type": "delay",
         "z": "65853bc12ed0cd16",
@@ -2583,11 +1481,1374 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 260,
+        "x": 180,
         "y": 620,
         "wires": [
             [
-                "80aae25f2225a5e6"
+                "a3f9c002d0159d16"
+            ]
+        ]
+    },
+    {
+        "id": "f3f4d99b7a0b4e62",
+        "type": "mqtt in",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "topic": "heater/command",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "d2d2d66e3cef1cdd",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 480,
+        "y": 80,
+        "wires": [
+            [
+                "c6ff6dfa8660daa1",
+                "ca95fa67badc3b05",
+                "daf7da322df33e8c"
+            ]
+        ]
+    },
+    {
+        "id": "daf7da322df33e8c",
+        "type": "ui_gauge",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "group": "495ea1bbb22348c8",
+        "order": 3,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Command",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "12",
+        "colors": [
+            "#8caafa",
+            "#c2f410",
+            "#ca3838"
+        ],
+        "seg1": "6",
+        "seg2": "12",
+        "className": "",
+        "x": 770,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "422fe8ad66a33048",
+        "type": "debug",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1510,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "6e6d01e8c9815372",
+        "type": "ui_gauge",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "group": "495ea1bbb22348c8",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Ave T",
+        "label": "degF",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "600",
+        "colors": [
+            "#8caafa",
+            "#008c00",
+            "#ca3838"
+        ],
+        "seg1": "300",
+        "seg2": "500",
+        "className": "",
+        "x": 810,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c2630468ad508dbf",
+        "type": "ui_gauge",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "group": "495ea1bbb22348c8",
+        "order": 6,
+        "width": "3",
+        "height": "3",
+        "gtype": "gage",
+        "title": "Delta T",
+        "label": "degF",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "200",
+        "colors": [
+            "#8caafa",
+            "#008c00",
+            "#ca3838"
+        ],
+        "seg1": "50",
+        "seg2": "150",
+        "className": "",
+        "x": 1080,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2b60b752f58e7423",
+        "type": "function",
+        "z": "65853bc12ed0cd16",
+        "name": "Delta T",
+        "func": "const time =new Date().toISOString().\n                    replace(/T/, ' ').      // replace T with a space\n                    replace(/\\..+/, '');     // delete the dot and everything after\n\nconst newMsg = { \n     'payload': ( msg.payload['bbq/temperature/1 lpf'] - msg.payload['Ave of Internal Temperatures'] )\n    ,'topic': \"Delta T (Inlet-Ave)\"\n    ,'time': time\n    ,'debug': {\n         \"T1\":msg.payload['bbq/temperature/1 lpf'] \n        ,\"Ave\":msg.payload['Ave of Internal Temperatures'] \n    }\n    \n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 540,
+        "wires": [
+            [
+                "c2630468ad508dbf"
+            ]
+        ]
+    },
+    {
+        "id": "03d49ced8fde7398",
+        "type": "join",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": true,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 815,
+        "y": 540,
+        "wires": [
+            [
+                "2b60b752f58e7423"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a3f9c002d0159d16",
+        "type": "function",
+        "z": "65853bc12ed0cd16",
+        "name": "RoR Calc (degF/m)",
+        "func": "const produceAndAdd = (arr1 = [], arr2 = []) => {\n   let sum = 0;\n   for(let i=0; i < arr1.length; i++) {\n      const product = (arr1[i] * arr2[i]);\n      sum += product;\n   }\n   return sum;\n};\n\nvar newMsg = {};\n\ntimeNow = (new Date(msg.time)).getTime();\ntimeLast= context.get('timeLast');\n//dt = (timeNow - timeLast)/10000000.0;\ndt = (timeNow - timeLast)/1000.0;\ncontext.set('timeLast', timeNow);\n\nvar data= context.get('data');\ndata.unshift(parseFloat(msg.payload));\ndata.pop();\ncontext.set('data', data);\n\nif(!isNaN(dt) && dt > 0.0 ){\n    const c = [1,8,27,48,42,0,-42,-48,-27,-8,-1];\n    rorSum = produceAndAdd(data,c);\n    ror = 1/512*1/dt*rorSum*60;\n    newMsg = { \n         'payload':ror          \n        ,'topic': \"RoR2\"\n        ,'time': msg.time\n    }\n\n}\n\nnewMsg.debug = {\n    'timeNow':timeNow\n    ,'timeLast' :timeLast\n    ,'data':data\n    ,'dt':dt\n    ,'ror':ror\n}\n\nreturn newMsg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(11).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "ca5e768d574ad134",
+                "c6ff6dfa8660daa1",
+                "c060bc794dbb8bd4"
+            ]
+        ]
+    },
+    {
+        "id": "c060bc794dbb8bd4",
+        "type": "debug",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "dcb2bc45dfe3fc7f",
+        "type": "function",
+        "z": "65853bc12ed0cd16",
+        "name": "RoR Forward finite difference calc  (degF/m)",
+        "func": "// https://en.wikipedia.org/wiki/Finite_difference_coefficient#Backward_finite_difference\n\nconst produceAndAdd = (arr1 = [], arr2 = []) => {\n   let sum = 0;\n   for(let i=0; i < arr1.length; i++) {\n      const product = (arr1[i] * arr2[i]);\n      sum += product;\n   }\n   return sum;\n};\n\nvar newMsg = {};\n\ntimeNow = (new Date(msg.time)).getTime();\ntimeLast= context.get('timeLast');\ndt = (timeNow - timeLast)/1000.0; //Delta Time in seconds\ncontext.set('timeLast', timeNow);\n\n\nvar data= context.get('data');\ndata.unshift(parseFloat(msg.payload));\ndata.pop();\ncontext.set('data', data);\n\n// (−25/12,4,−3,4/3,−1/4) 2.083,4,-3,1.333,-0.25\n\nif(!isNaN(dt) && dt > 0.0 ){\n    const c = [-2.083,4,-3,1.333,-0.25];\n    rorSum = produceAndAdd(data,c);\n    ror = 1/dt*rorSum*60;\n    newMsg = { \n         'payload':ror          \n        ,'topic': \"RoR2\"\n        ,'time': msg.time\n    }\n\n}\n\nnewMsg.debug = {\n    'timeNow':timeNow\n    ,'timeLast' :timeLast\n    ,'data':data\n    ,'dt':dt\n    ,'ror':ror\n}\n\nreturn newMsg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(5).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cd8380b9b08eb888",
+        "type": "function",
+        "z": "65853bc12ed0cd16",
+        "name": "RoR Calc 10 (degF/m)",
+        "func": "const produceAndAdd = (arr1 = [], arr2 = []) => {\n   let sum = 0;\n   for(let i=0; i < arr1.length; i++) {\n      const product = (arr1[i] * arr2[i]);\n      sum += product;\n   }\n   return sum;\n};\n\nvar newMsg = {};\n\ntimeNow = (new Date(msg.time)).getTime();\ntimeLast= context.get('timeLast');\n//dt = (timeNow - timeLast)/10000000.0;\ndt = (timeNow - timeLast)/1000.0;\ncontext.set('timeLast', timeNow);\n\nvar data= context.get('data');\ndata.unshift(parseFloat(msg.payload));\ndata.pop();\ncontext.set('data', data);\n\nif(!isNaN(dt) && dt > 0.0 ){\n    const c = [1,8,27,48,42,0,-42,-48,-27,-8,-1];\n    rorSum = produceAndAdd(data,c);\n    ror = 1/512*1/dt*rorSum*60;\n    newMsg = { \n         'payload':ror          \n        ,'topic': \"RoR2\"\n        ,'time': msg.time\n    }\n\n}\n\nnewMsg.debug = {\n    'timeNow':timeNow\n    ,'timeLast' :timeLast\n    ,'data':data\n    ,'dt':dt\n    ,'ror':ror\n}\n\nreturn newMsg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(11).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
+        "finalize": "",
+        "libs": [],
+        "x": 220,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3cc11d24.ff01a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
+        "info": "\n[https://docs.google.com/spreadsheets/d/1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc/edit#gid=0](Google Sheet)\n\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.\n\nhttps://www.rodened.com/posts/how-to-read-and-write-data-to-a-google-sheet-in-node-red-1/#:~:text=Go%20to%20the%20node-red%20editor%20and%20open%20the,the%20Scopes%20further%20down%20in%20the%20configuration%20window.",
+        "x": 240,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "1bf3b114c06ea51a",
+        "type": "kasa",
+        "z": "f6f2187d.f17ca8",
+        "name": "Phone Plug - KP115(US)",
+        "device": "192.168.0.136",
+        "interval": "10000",
+        "eventInterval": "5000",
+        "payload": "getQuickInfo",
+        "payloadType": "info",
+        "debug": false,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "f6fd254feb89945a",
+                "7b0c1a5813684be5",
+                "d58a1a25e1da952c",
+                "fcaf0e1d9d611420"
+            ]
+        ]
+    },
+    {
+        "id": "7c88d3051ecbbddf",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "getQuickInfo",
+        "payloadType": "str",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "dca35781dc909c8f",
+                "1bf3b114c06ea51a"
+            ]
+        ]
+    },
+    {
+        "id": "079fd9adc5b34032",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "toggle",
+        "payloadType": "str",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "61a8c9bd6a61bbc2"
+            ]
+        ]
+    },
+    {
+        "id": "19014adf054dbad2",
+        "type": "GSheet",
+        "z": "f6f2187d.f17ca8",
+        "creds": "23fd49686f88e3be",
+        "method": "append",
+        "action": "",
+        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
+        "cells": "Sheet1!A1:M10000",
+        "flatten": true,
+        "name": "Google Sheet",
+        "x": 1040,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0853034c5a052deb",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "To Array",
+        "func": "msg.payload = [msg.payload.timestamp,msg.payload.emeter.realtime.current_ma,msg.payload.emeter.realtime.power,msg.payload.emeter.realtime.total_wh]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 880,
+        "y": 220,
+        "wires": [
+            [
+                "19014adf054dbad2"
+            ]
+        ]
+    },
+    {
+        "id": "f6fd254feb89945a",
+        "type": "rbe",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload.emeter.realtime.current_ma",
+        "topi": "topic",
+        "x": 750,
+        "y": 220,
+        "wires": [
+            [
+                "0853034c5a052deb"
+            ]
+        ]
+    },
+    {
+        "id": "7b0c1a5813684be5",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Turn Off",
+        "property": "payload.emeter.realtime.current_ma",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "-1",
+                "vt": "str"
+            },
+            {
+                "t": "lte",
+                "v": "30",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [],
+            [
+                "05649791ccdafe11"
+            ]
+        ]
+    },
+    {
+        "id": "05649791ccdafe11",
+        "type": "trigger",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "op1": "off",
+        "op2": "on",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "18",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "hr",
+        "reset": "toggle",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 350,
+        "y": 420,
+        "wires": [
+            [
+                "f17b7f74b36a8c03",
+                "61a8c9bd6a61bbc2"
+            ]
+        ]
+    },
+    {
+        "id": "fcaf0e1d9d611420",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5f0f7ff475b0df30",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "Link to sheet",
+        "info": "[https://docs.google.com/spreadsheets/d/1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc/edit#gid=0](link)",
+        "x": 380,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "70680154ce6f7121",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Erase Stats",
+        "func": "if (msg.payload==\"off\")\n    msg.payload=\"eraseStats\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "1bf3b114c06ea51a"
+            ]
+        ]
+    },
+    {
+        "id": "d58a1a25e1da952c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Reset",
+        "func": "if (typeof msg.payload.sysInfo !== 'undefined')\n    if (msg.payload.sysInfo.relay_state==1){\n        msg.reset=true;\n        return msg;\n    }\n\nreturn null;\n    ",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 110,
+        "y": 460,
+        "wires": [
+            [
+                "05649791ccdafe11"
+            ]
+        ]
+    },
+    {
+        "id": "f17b7f74b36a8c03",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "tigger_debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "75b9e35836b690af",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "reset",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 520,
+        "wires": [
+            [
+                "05649791ccdafe11"
+            ]
+        ]
+    },
+    {
+        "id": "fc7ff10193ea7180",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "payload.failed",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "10",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 640,
+        "wires": [
+            [
+                "67699a665602bb7a",
+                "f17b7f74b36a8c03",
+                "4b72b92fdd52bbad"
+            ]
+        ]
+    },
+    {
+        "id": "67699a665602bb7a",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "on",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 535,
+        "y": 640,
+        "wires": [
+            [
+                "f17b7f74b36a8c03",
+                "61a8c9bd6a61bbc2"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "dca35781dc909c8f",
+        "type": "tcp-ping",
+        "z": "f6f2187d.f17ca8",
+        "ip": "192.168.0.127",
+        "port": "22000",
+        "count": "10",
+        "interval": "30000",
+        "timeout": "10000",
+        "topic": "",
+        "name": "",
+        "x": 260,
+        "y": 640,
+        "wires": [
+            [
+                "fc7ff10193ea7180",
+                "fa5a07c55dcac919"
+            ]
+        ]
+    },
+    {
+        "id": "4b72b92fdd52bbad",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "fa5a07c55dcac919",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "TCP",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "7931dd0275f44101",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 215,
+        "y": 875,
+        "wires": []
+    },
+    {
+        "id": "a00d932d95b2148d",
+        "type": "catch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 65,
+        "y": 875,
+        "wires": [
+            [
+                "7931dd0275f44101"
+            ]
+        ]
+    },
+    {
+        "id": "61a8c9bd6a61bbc2",
+        "type": "delay",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 390,
+        "y": 160,
+        "wires": [
+            [
+                "1bf3b114c06ea51a",
+                "70680154ce6f7121"
+            ]
+        ]
+    },
+    {
+        "id": "7bdf77d223056312",
+        "type": "rbe",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload",
+        "topi": "topic",
+        "x": 960,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdef05f.e8692f8",
+        "type": "inject",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 55,
+        "y": 120,
+        "wires": [
+            [
+                "c813a3f367347541"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "8a2e84550a2fbdb1",
+        "type": "tcp request",
+        "z": "6d703647927a02c8",
+        "d": true,
+        "server": "192.168.0.163",
+        "port": "3333",
+        "out": "time",
+        "ret": "string",
+        "splitc": "1000",
+        "name": "",
+        "x": 410,
+        "y": 120,
+        "wires": [
+            [
+                "fe6d3c835383785b"
+            ]
+        ]
+    },
+    {
+        "id": "c813a3f367347541",
+        "type": "function",
+        "z": "6d703647927a02c8",
+        "name": "miner_getstat2",
+        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_getstat2\\\"}\\n'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "8a2e84550a2fbdb1"
+            ]
+        ]
+    },
+    {
+        "id": "fe6d3c835383785b",
+        "type": "json",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "a77a1b3dd298989c"
+            ]
+        ]
+    },
+    {
+        "id": "a77a1b3dd298989c",
+        "type": "function",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "func": "last_stale = flow.get(\"stale\");\nlast_valid = flow.get(\"valid\");\nstale = parseInt(msg.payload.result[8].split(\";\")[0]);\nvalid = parseInt(msg.payload.result[2].split(\";\")[1]);\n\nif ( last_valid == -1 || valid < last_valid ) { \n// Inital start up or after miner reset\n    msg.stale_inc = 0;\n    flow.set(\"stale\", 0);\n} else if ( valid > last_valid ) {  \n// The happy path saw a new valid\n    msg.stale_inc=0;\n    flow.set(\"stale\", stale);\n} else if ( valid == last_valid && stale >= last_stale ) { \n// unhappy stale increased capture the runup by not updating stale to become next last stale\n    msg.stale_inc=stale-last_stale;    \n} \n\nflow.set(\"valid\", valid);\n\nmsg.payload.debug=[valid,last_valid,stale,last_stale,msg.stale_inc];\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"stale\", -1);\nflow.set(\"valid\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 675,
+        "y": 120,
+        "wires": [
+            [
+                "6061d8542ecad0f5",
+                "48c953bcfd564376",
+                "cba849c996053a0b"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "1848ad9a572c9294",
+        "type": "inject",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 55,
+        "y": 200,
+        "wires": [
+            [
+                "46453069620ba4c7"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "46453069620ba4c7",
+        "type": "function",
+        "z": "6d703647927a02c8",
+        "name": "miner_restart",
+        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_restart\\\"}\\n'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "dfabfef0173aae28",
+                "8deb749a308faeb7"
+            ]
+        ]
+    },
+    {
+        "id": "6061d8542ecad0f5",
+        "type": "switch",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "property": "stale_inc",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "4",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 770,
+        "y": 120,
+        "wires": [
+            [
+                "46453069620ba4c7",
+                "48c953bcfd564376"
+            ]
+        ]
+    },
+    {
+        "id": "48c953bcfd564376",
+        "type": "debug",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "dfabfef0173aae28",
+        "type": "tcp out",
+        "z": "6d703647927a02c8",
+        "d": true,
+        "host": "192.168.0.163",
+        "port": "3333",
+        "beserver": "client",
+        "base64": false,
+        "end": true,
+        "name": "",
+        "x": 430,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8deb749a308faeb7",
+        "type": "debug",
+        "z": "6d703647927a02c8",
+        "name": "restart cmd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f7ac2be7c155f3ba",
+        "type": "comment",
+        "z": "6d703647927a02c8",
+        "name": "https://gist.github.com/mraaroncruz/f9c850b138fdb6a915b729ffa897d3cf",
+        "info": "",
+        "x": 280,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dbfce86a18abe893",
+        "type": "GSheet",
+        "z": "6d703647927a02c8",
+        "creds": "23fd49686f88e3be",
+        "method": "append",
+        "action": "",
+        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
+        "cells": "office!A1:M40000",
+        "flatten": true,
+        "name": "Google Sheet",
+        "x": 800,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cba849c996053a0b",
+        "type": "change",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.debug",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 675,
+        "y": 280,
+        "wires": [
+            [
+                "dbfce86a18abe893"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "2416138f1644c191",
+        "type": "debug",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 250,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a5b144fd4da59053",
+        "type": "catch",
+        "z": "6d703647927a02c8",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 90,
+        "y": 340,
+        "wires": [
+            [
+                "2416138f1644c191"
+            ]
+        ]
+    },
+    {
+        "id": "c2129e860d22adc1",
+        "type": "inject",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 75,
+        "y": 80,
+        "wires": [
+            [
+                "eabb3d2a911b332e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "43237326cff248d7",
+        "type": "tcp request",
+        "z": "600514eb4d8008a2",
+        "d": true,
+        "server": "192.168.0.140",
+        "port": "3333",
+        "out": "time",
+        "ret": "string",
+        "splitc": "1000",
+        "name": "",
+        "x": 430,
+        "y": 80,
+        "wires": [
+            [
+                "f23033b87a93a70d"
+            ]
+        ]
+    },
+    {
+        "id": "eabb3d2a911b332e",
+        "type": "function",
+        "z": "600514eb4d8008a2",
+        "name": "miner_getstat2",
+        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_getstat2\\\"}\\n'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "43237326cff248d7"
+            ]
+        ]
+    },
+    {
+        "id": "f23033b87a93a70d",
+        "type": "json",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 610,
+        "y": 80,
+        "wires": [
+            [
+                "9245398c274fe1ec"
+            ]
+        ]
+    },
+    {
+        "id": "9245398c274fe1ec",
+        "type": "function",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "func": "last_stale = flow.get(\"stale\");\nlast_valid = flow.get(\"valid\");\nstale = parseInt(msg.payload.result[8].split(\";\")[0]);\nvalid = parseInt(msg.payload.result[2].split(\";\")[1]);\n\nif ( last_valid == -1 || valid < last_valid ) { \n// Inital start up or after miner reset\n    msg.stale_inc = 0;\n    flow.set(\"stale\", 0);\n} else if ( valid > last_valid ) {  \n// The happy path saw a new valid\n    msg.stale_inc=0;\n    flow.set(\"stale\", stale);\n} else if ( valid == last_valid && stale >= last_stale ) { \n// unhappy stale increased capture the runup by not updating stale to become next last stale\n    msg.stale_inc=stale-last_stale;    \n} \n\nflow.set(\"valid\", valid);\n\nmsg.payload.debug=[valid,last_valid,stale,last_stale,msg.stale_inc];\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set(\"stale\", -1);\nflow.set(\"valid\", -1);",
+        "finalize": "",
+        "libs": [],
+        "x": 695,
+        "y": 80,
+        "wires": [
+            [
+                "9b9632dbe822d379",
+                "b3bf1e3cdd529e7d",
+                "8468e2771accd53e"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "e1b2fe315efb756b",
+        "type": "inject",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 75,
+        "y": 160,
+        "wires": [
+            [
+                "a5eb13b5795eba32"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "a5eb13b5795eba32",
+        "type": "function",
+        "z": "600514eb4d8008a2",
+        "name": "miner_restart",
+        "func": "msg.payload='{\\\"id\\\":0,\\\"jsonrpc\\\":\\\"2.0\\\",\\\"method\\\":\\\"miner_restart\\\"}\\n'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "600bd693cab5e817",
+                "19ebf3cfe4c2332c"
+            ]
+        ]
+    },
+    {
+        "id": "9b9632dbe822d379",
+        "type": "switch",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "property": "stale_inc",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "4",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 790,
+        "y": 80,
+        "wires": [
+            [
+                "a5eb13b5795eba32",
+                "b3bf1e3cdd529e7d"
+            ]
+        ]
+    },
+    {
+        "id": "b3bf1e3cdd529e7d",
+        "type": "debug",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "600bd693cab5e817",
+        "type": "tcp out",
+        "z": "600514eb4d8008a2",
+        "d": true,
+        "host": "192.168.0.140",
+        "port": "3333",
+        "beserver": "client",
+        "base64": false,
+        "end": true,
+        "name": "",
+        "x": 450,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "19ebf3cfe4c2332c",
+        "type": "debug",
+        "z": "600514eb4d8008a2",
+        "name": "restart cmd",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "743b1cc583d91fce",
+        "type": "GSheet",
+        "z": "600514eb4d8008a2",
+        "creds": "23fd49686f88e3be",
+        "method": "append",
+        "action": "",
+        "sheet": "1otS_G9Tae0oPVOjOVkDG6I9tnrj5Q5265tlB7Ts3sJc",
+        "cells": "bedroom!A1:M40000",
+        "flatten": true,
+        "name": "Google Sheet",
+        "x": 860,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8468e2771accd53e",
+        "type": "change",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.debug",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 735,
+        "y": 220,
+        "wires": [
+            [
+                "743b1cc583d91fce"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "9b9f6249bc3111e1",
+        "type": "debug",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 298,
+        "y": 298,
+        "wires": []
+    },
+    {
+        "id": "98f3068001d479a6",
+        "type": "catch",
+        "z": "600514eb4d8008a2",
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 148,
+        "y": 298,
+        "wires": [
+            [
+                "9b9f6249bc3111e1"
             ]
         ]
     },
@@ -4077,6 +4338,129 @@
         "wires": [
             [
                 "76fd6add5fab6bfd"
+            ]
+        ]
+    },
+    {
+        "id": "5fe1bb1c09e2cf48",
+        "type": "kasa",
+        "z": "6a81800dbf50ece8",
+        "name": "Phone Plug - KP115(US)",
+        "device": "192.168.0.136",
+        "interval": "10000",
+        "eventInterval": "5000",
+        "payload": "getQuickInfo",
+        "payloadType": "info",
+        "debug": false,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "d1c3abcbf7860961"
+            ]
+        ]
+    },
+    {
+        "id": "d1c3abcbf7860961",
+        "type": "debug",
+        "z": "6a81800dbf50ece8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3712b2bceaadfcaa",
+        "type": "inject",
+        "z": "6a81800dbf50ece8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "getQuickInfo",
+        "payloadType": "str",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "5fe1bb1c09e2cf48"
+            ]
+        ]
+    },
+    {
+        "id": "0144f123483d1c36",
+        "type": "inject",
+        "z": "6a81800dbf50ece8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "eraseStats",
+        "payloadType": "str",
+        "x": 80,
+        "y": 220,
+        "wires": [
+            [
+                "5fe1bb1c09e2cf48"
+            ]
+        ]
+    },
+    {
+        "id": "e2ac7d94d27b587a",
+        "type": "inject",
+        "z": "6a81800dbf50ece8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "toggle",
+        "payloadType": "str",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "5fe1bb1c09e2cf48"
             ]
         ]
     }

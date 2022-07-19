@@ -369,7 +369,8 @@
         "y": 140,
         "wires": [
             [
-                "6fce01b1e3d93c7d"
+                "6fce01b1e3d93c7d",
+                "38abb77b3a0d39fe"
             ]
         ]
     },
@@ -1684,7 +1685,7 @@
         "type": "debug",
         "z": "65853bc12ed0cd16",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -1707,8 +1708,8 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(5).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 900,
+        "x": 230,
+        "y": 840,
         "wires": [
             []
         ]
@@ -1724,11 +1725,45 @@
         "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(11).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
         "finalize": "",
         "libs": [],
-        "x": 220,
-        "y": 820,
+        "x": 160,
+        "y": 800,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "01c128b2a22d5a7f",
+        "type": "function",
+        "z": "65853bc12ed0cd16",
+        "name": "RoR Forward finite difference calc7  (degF/m)",
+        "func": "// https://web.media.mit.edu/~crtaylor/calculator.html\n// Locations of Sampled Points: -6,-5,-4,-3,-2,-1,0\n// Derivitive Order: 1\n// f_x = (10*f[i-6]-72*f[i-5]+225*f[i-4]-400*f[i-3]+450*f[i-2]-360*f[i-1]+147*f[i+0])/(60*1.0*h**1)\n\n// https://en.wikipedia.org/wiki/Finite_difference_coefficient#Backward_finite_difference\n\nconst produceAndAdd = (arr1 = [], arr2 = []) => {\n   let sum = 0;\n   for(let i=0; i < arr1.length; i++) {\n      const product = (arr1[i] * arr2[i]);\n      sum += product;\n   }\n   return sum;\n};\n\nvar newMsg = {};\n\ntimeNow = (new Date(msg.time)).getTime();\ntimeLast= context.get('timeLast');\ndt = (timeNow - timeLast)/1000.0; //Delta Time in seconds\ncontext.set('timeLast', timeNow);\n\n\nvar data= context.get('data');\ndata.unshift(parseFloat(msg.payload));\ndata.pop();\ncontext.set('data', data);\n\n//f_x = (10*f[i-6]-72*f[i-5]+225*f[i-4]-400*f[i-3]+450*f[i-2]-360*f[i-1]+147*f[i+0])/(60*1.0*h**1)\n//10,-72,225,-400,450,-360,147 **rev ordered 1/60 so..\n//147,-360,450,-400,225,-72,10  1/60\n\nif(!isNaN(dt) && dt > 0.0 ){\n    const c = [147,-360,450,-400,225,-72,10];\n    rorSum = produceAndAdd(data,c);\n    ror = 1/dt*rorSum; //1/60*60 to get seconds so dropped the 1/60 \n    newMsg = { \n         'payload':ror          \n        ,'topic': \"RoR2\"\n        ,'time': msg.time\n    }\n\n}\n\nnewMsg.debug = {\n    'timeNow':timeNow\n    ,'timeLast' :timeLast\n    ,'data':data\n    ,'dt':dt\n    ,'ror':ror\n}\n\nreturn newMsg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nvar data = Array(7).fill(-1);\ncontext.set('data',data);\ncontext.set('timeLast',(new Date()).getTime());",
+        "finalize": "",
+        "libs": [],
+        "x": 230,
+        "y": 880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "38abb77b3a0d39fe",
+        "type": "debug",
+        "z": "65853bc12ed0cd16",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "3cc11d24.ff01a2",

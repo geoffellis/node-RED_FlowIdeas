@@ -1,7 +1,7 @@
-HomeAutomationProject
+Node-Red Tinker Project
 =====================
 
-Project for collection of flows to monitor things in the house. ie things not big enough or complex enough for thier own instance of a project/docker image
+Project for collection of flows.
 
 ### About
 

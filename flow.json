@@ -2067,32 +2067,6 @@
         ]
     },
     {
-        "id": "72fabc9b6b98323f",
-        "type": "function",
-        "z": "9ee26a7af4143d61",
-        "name": "",
-        "func": "//TODO: assert payload is image\nmsg.payload.background(0xFFFFFFFF);\nconst mask=context.get(\"mask\");\n// Mask uses average to set the alpha so white -> 0 and black ->1\n// https://github.com/oliver-moran/jimp/blob/master/packages/plugin-mask/src/index.js\nmsg.payload.mask(mask).crop(220,235,(545-220),(450-235))\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// See https://www.npmjs.com/package/jimp for more about jimp\nconst mask = await jimp.read('/data/mask.jpg')\ncontext.set(\"mask\",mask);",
-        "finalize": "",
-        "libs": [
-            {
-                "var": "jimp",
-                "module": "jimp"
-            }
-        ],
-        "x": 940,
-        "y": 280,
-        "wires": [
-            [
-                "3df465a52e80d73a",
-                "a18c438395c90aaf"
-            ]
-        ]
-    },
-    {
         "id": "a18c438395c90aaf",
         "type": "function",
         "z": "9ee26a7af4143d61",
@@ -2408,6 +2382,32 @@
         "y": 420,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "72fabc9b6b98323f",
+        "type": "function",
+        "z": "9ee26a7af4143d61",
+        "name": "",
+        "func": "//TODO: assert payload is image\nmsg.payload.background(0xFFFFFFFF);\nconst mask=context.get(\"mask\");\n// Mask uses average to set the alpha so white -> 0 and black ->1\n// https://github.com/oliver-moran/jimp/blob/master/packages/plugin-mask/src/index.js\nmsg.payload.mask(mask).crop(220,235,(545-220),(450-235))\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// See https://www.npmjs.com/package/jimp for more about jimp\nconst mask = await jimp.read('/data/mask.jpg')\ncontext.set(\"mask\",mask);",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "jimp",
+                "module": "jimp"
+            }
+        ],
+        "x": 940,
+        "y": 280,
+        "wires": [
+            [
+                "3df465a52e80d73a",
+                "a18c438395c90aaf"
+            ]
         ]
     },
     {

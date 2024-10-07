@@ -7,7 +7,8 @@
         "node-red-contrib-configurable-interval": "0.9.1",
         "node-red-contrib-google-sheets": "1.1.2",
         "node-red-dashboard": "3.6.5",
-        "node-red-node-base64": "0.3.0"
+        "node-red-node-base64": "0.3.0",
+        "node-red-contrib-image-tools": "2.1.1"
     },
     "node-red": {
         "settings": {
